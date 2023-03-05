@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "name": "Banana",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Bananas.svg/1280px-Bananas.svg.png",
+    "price": 15,
+    "sale": false
+  },
+  {
+    "id": 2,
+    "name": "Mango",
+    "url": "https://download.assistivecards.com/cards/fruits/mango.svg",
+    "price": 10,
+    "sale": true
+  },
+  {
+    "id": 3,
+    "name": "Apple",
+    "url": "https://thumbs.dreamstime.com/b/apple-svg-teacher-jpe-svg-school-jpeg-svg-cricut-files-silhouette-cut-files-cutting-files-back-to-school-jpeg-svg-apple-228785539.jpg",
+    "price": 13,
+    "sale": false
+  }
+]
