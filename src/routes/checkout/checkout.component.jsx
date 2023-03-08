@@ -1,6 +1,7 @@
 import { useContext } from 'react';
+import EmptyCheckout from '../../components/empty-checkout/empty-checkout.component';
 import { CartContext } from '../../contexts/cart.context';
-import {CheckoutContainer, CheckOutImg, CheckOutItem} from './checkout.styles'
+import {CheckoutContainer, CheckOutImg, CheckOutItem, CheckOutTotal} from './checkout.styles'
 
 const CheckOut = () => {
 
@@ -8,18 +9,23 @@ const CheckOut = () => {
 
     const checkoutItems = cartItems.map((item) => {
         const { id, name, url, quantity, total } = item;
+
         return (
-            item ? (
-                <CheckOutItem key={id}>
-                    <CheckOutImg src={url} alt={`${name}`} />
-                    <span>{name}</span>
-                    <span>{quantity} kg </span>
-                    <span> ${total} </span>
-                </CheckOutItem>
-            ) :
-            'No Items'
+            <CheckOutItem key={id}>
+                <CheckOutImg src={url} alt={`${name}`} />
+                <span>{name}</span>
+                <span>{quantity} kg </span>
+                <span> ${total} </span>
+            </CheckOutItem>
         )
+        
     })
+
+    const checkOutTotal = (products) => {
+        return products.reduce((acc, product) => {
+          return acc + product.total;
+        }, 0);
+    };
 
     return (
         <CheckoutContainer>
@@ -29,7 +35,10 @@ const CheckOut = () => {
                 <span>Quantity</span>
                 <span>Total</span>
             </CheckOutItem>
-            { checkoutItems }
+            { cartItems.length ? checkoutItems : <EmptyCheckout/>}
+            <CheckOutTotal>
+                <span>Total: ${checkOutTotal(cartItems)}</span>
+            </CheckOutTotal>
         </CheckoutContainer>
     )
 }

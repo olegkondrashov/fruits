@@ -29,7 +29,6 @@ export const CartProvider = ({children}) => {
 
   const addItemToCart = (productToAdd, count, CartTotal) => {
     setCartItems(addCartItem(cartItems, productToAdd, count, CartTotal));
-    console.log(productToAdd, 'CartTotal:', CartTotal);
   }
 
   const value = {isCartOpen, setIsCartOpen, addItemToCart, cartItems}
