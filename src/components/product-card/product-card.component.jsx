@@ -1,17 +1,34 @@
 import { useState, useEffect, useContext } from "react";
 import { CartContext } from "../../contexts/cart.context";
-import { SaleImg } from "../sale-icon/sale-icon.styles";
+import { SaleContext } from "../../contexts/sale.context";
+import { PRODUCT_FOR_SALE } from "../../products-for-sale";
+import SaleIcon from "../sale-icon/sale-icon.component";
 
 import { ButtonsContainer, BuyItButton, Card, CardMainImg } from "./product-card.style.jsx";
 
 const ProductCard = ({ product }) => {
-  
-  const { addItemToCart} = useContext(CartContext);
+  const { addNewItems } = useContext(SaleContext);
+  const { addItemToCart } = useContext(CartContext);
 
-  const { id, name, url, price, sale } = product;
+  const { id, name, url, price } = product;
+  useEffect(() => addNewItems(product), [product])
+  
   const [count, setCount] = useState(0);
   const [total, setTotal] = useState(0);
+  const [isSale, setIsSale] = useState(false);
 
+
+  const setSale = (name) => {
+    switch(name) {
+      case PRODUCT_FOR_SALE.MANGO:
+        return setIsSale(!isSale);
+      case PRODUCT_FOR_SALE.KIWI:
+        return setIsSale(!isSale);
+      default: null
+    }
+}
+
+  
   // If the product on sale - each 3rd product has a half price
   const discount = () => {
     return setTotal(total - price / 2);
@@ -19,7 +36,7 @@ const ProductCard = ({ product }) => {
 
   const totalPriceMinus = () => {
     if (count > 0) {
-      if (sale && count % 3 === 0) {
+      if (isSale && count % 3 === 0) {
         discount();
       } else {
         setTotal(total - price);
@@ -29,7 +46,7 @@ const ProductCard = ({ product }) => {
   }
 
   const totalPricePlus = () => {
-    if (sale && (count + 1) % 3 === 0) {
+    if (isSale && (count + 1) % 3 === 0) {
       setTotal(total + price / 2);
     } else {
       setTotal(total + price);
@@ -40,16 +57,17 @@ const ProductCard = ({ product }) => {
   useEffect(() => {
     setTotal(total);
     setCount(count);
-  });
+    setSale(name);
+  }, []);
 
   const addProductToCart = () => addItemToCart(product, count, total);
 
   return (
     <Card key={id}>
       {
-        sale ? (
-          <SaleImg 
-            title="Every 3rd kilo = half price"
+        isSale ? (
+          <SaleIcon 
+            title="Every 3rd kilo = half price "
             src="https://svgsilh.com/svg/606687.svg"
             alt="sale"
           />

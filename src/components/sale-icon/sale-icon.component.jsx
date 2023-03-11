@@ -1,12 +1,13 @@
-import { SaleImg } from "./sale-icon.styles";
+import { SaleImgContainer, SaleImg } from "./sale-icon.styles";
 
 const SaleIcon = ({title, src, alt}) => {
     return (
+      <SaleImgContainer data={title} href="#">
         <SaleImg
-          title={title}
           src={src}
           alt={alt}
-        />
+          />
+      </SaleImgContainer>
     )
 }
 

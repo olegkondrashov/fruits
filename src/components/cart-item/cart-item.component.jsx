@@ -8,10 +8,9 @@ const CartItem = ({ cartItem }) => {
     return (
       <CartContainer>
         <CartImg src={url} alt={`${name}`} />
-        <div>
-          <span>{name} x {quantity} kg </span>
-          <span> =  ${total} </span>
-        </div>
+        <span>{name}</span>
+        <span>x{quantity} kg</span>
+        <span>=  ${total}</span>
       </CartContainer>
     );
   };

@@ -1,11 +1,12 @@
 import { useContext } from 'react';
 import EmptyCheckout from '../../components/empty-checkout/empty-checkout.component';
 import { CartContext } from '../../contexts/cart.context';
-import {CheckoutContainer, CheckOutImg, CheckOutItem, CheckOutTotal} from './checkout.styles'
+import { CheckoutContainer, CheckOutImg, CheckOutItem, CheckOutTotal, RemoveButton} from './checkout.styles'
 
 const CheckOut = () => {
 
-    const {cartItems} = useContext(CartContext);
+    const {cartItems, removeItem } = useContext(CartContext);
+
 
     const checkoutItems = cartItems.map((item) => {
         const { id, name, url, quantity, total } = item;
@@ -14,8 +15,9 @@ const CheckOut = () => {
             <CheckOutItem key={id}>
                 <CheckOutImg src={url} alt={`${name}`} />
                 <span>{name}</span>
-                <span>{quantity} kg </span>
+                <span>{quantity} kg</span>
                 <span> ${total} </span>
+                <RemoveButton onClick={() => removeItem(id)}/>
             </CheckOutItem>
         )
         
@@ -34,6 +36,7 @@ const CheckOut = () => {
                 <span>Name</span>
                 <span>Quantity</span>
                 <span>Total</span>
+                <span>Remove</span>
             </CheckOutItem>
             { cartItems.length ? checkoutItems : <EmptyCheckout/>}
             <CheckOutTotal>

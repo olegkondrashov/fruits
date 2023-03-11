@@ -1,13 +1,11 @@
-.card-container {
+import styled from "styled-components";
+
+
+export const CardContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
     gap: 15px;
     margin-top: 50px;
-}
-.shop {
-    margin-top: 50px;
-    justify-content: center;
-    flex-wrap: wrap;
-}
+`

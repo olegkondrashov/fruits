@@ -33,3 +33,28 @@ export const CheckOutTotal = styled.div`
         font-size: 22px;
     }
 `
+
+export const RemoveButton = styled.span`
+    position: relative;
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+    height: 30px;
+    opacity: 0.3;
+    cursor: pointer;
+    &:hover {
+        opacity: 1;
+    }
+    &:after, &:before {
+        position: absolute;
+        left: 50%;
+        top: 0;
+        content: ' ';
+        height: 30px;
+        width: 2px;
+        background-color: #333;
+        transform: rotate(-45deg);
+    }
+    &:before {
+        transform: rotate(45deg);
+`
