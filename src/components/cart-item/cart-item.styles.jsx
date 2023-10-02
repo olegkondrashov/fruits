@@ -9,15 +9,11 @@ export const CartContainer = styled.div`
     align-items: center;
     border-radius: 4px;
     box-shadow: rgba(0, 0, 0, 0.3) 0 1px 3px;
-    & span, img {
-        display: flex;
-        width: 25%;
-        
-    }
 
 `
 export const CartImg = styled.img`
+    display: flex;
+    width: 25%;
     object-fit: contain;
-    height: 30px;
     padding: 5px;
 `

@@ -12,8 +12,12 @@ export const CheckOutItem = styled.div`
     padding: 1em;
     margin: 1em;
     border-bottom: 1px solid rgba(0,0,0,0.2);
-    & span, img{
+    & img, span{
         width: 20%;
+    }
+    @media (max-width: 425px) {
+        padding: 0 0 10px;
+        margin: 0;
     }
 `
 
@@ -29,7 +33,6 @@ export const CheckOutTotal = styled.div`
     margin-top: 50px;
     & span {
         display: flex;
-        width: 20%;
         font-size: 22px;
     }
 `
@@ -37,8 +40,8 @@ export const CheckOutTotal = styled.div`
 export const RemoveButton = styled.span`
     position: relative;
     display: block;
-    margin: 0 auto;
-    width: 100%;
+    margin: 0;
+    width: 30px;
     height: 30px;
     opacity: 0.3;
     cursor: pointer;
